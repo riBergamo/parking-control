@@ -5,6 +5,7 @@ import com.api.parkingcontrol.repository.ParkingSpotRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 //para melhorar: criar interface para o service para esta classe implementar ela pq se caso precisar trocar a implementação nao vai precisar fazer refatoração grande no controller
 @Service
@@ -32,5 +33,9 @@ public class ParkingSpotService {
 
     public boolean existsByApartmentAndBlock(String apartment, String block) {
         return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
+    }
+
+    public List<ParkingSpot> findAll() {
+        return parkingSpotRepository.findAll();
     }
 }
