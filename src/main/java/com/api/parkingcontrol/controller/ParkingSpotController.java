@@ -12,6 +12,8 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -27,6 +29,17 @@ public class ParkingSpotController {
     @GetMapping
     public ResponseEntity<List<ParkingSpot>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findAll(@PathVariable(value = "id") UUID id) {
+        Optional<ParkingSpot> parkingSpotOptional = parkingSpotService.findById(id);
+        if (parkingSpotOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(parkingSpotOptional.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
+
+
     }
 
     @PostMapping

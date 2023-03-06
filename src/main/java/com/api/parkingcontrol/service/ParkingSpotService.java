@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 //para melhorar: criar interface para o service para esta classe implementar ela pq se caso precisar trocar a implementação nao vai precisar fazer refatoração grande no controller
 @Service
@@ -37,5 +39,9 @@ public class ParkingSpotService {
 
     public List<ParkingSpot> findAll() {
         return parkingSpotRepository.findAll();
+    }
+
+    public Optional<ParkingSpot> findById(UUID id) {
+        return parkingSpotRepository.findById(id);
     }
 }
