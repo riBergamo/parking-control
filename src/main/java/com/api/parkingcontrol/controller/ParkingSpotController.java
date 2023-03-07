@@ -69,7 +69,7 @@ public class ParkingSpotController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
         }
 
-        var parkingSpot = new ParkingSpot();
+        var parkingSpot = new ParkingSpot();//nova instancia
 
         BeanUtils.copyProperties(parkingSpotDto, parkingSpot);//conversão
         parkingSpot.setId(parkingSpotOptional.get().getId());//seta o id e a data de registro para permanecer o mesmo
