@@ -11,6 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration//@enablewebsecurity: desliga as configs do spring security
 public class WebSecurityOld extends WebSecurityConfigurerAdapter {
 
+    final UserDetailsServiceImpl userDetailsService;
+
+    public WebSecurityOld(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -25,10 +31,9 @@ public class WebSecurityOld extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("riane")
-                .password(passwordEncoder().encode("1234"))
-                .roles("ADMIN");
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());//em vez de fazer auth em memoria esta utilizando o userdetailsservice para isso
     }
 
     @Bean

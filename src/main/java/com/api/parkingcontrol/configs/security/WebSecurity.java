@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.transaction.TransactionDefinition.withDefaults;
-/*
-@Configuration
+
+//@Configuration
 public class WebSecurity {
 
     @Bean
@@ -22,4 +22,4 @@ public class WebSecurity {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-}*/
+}
