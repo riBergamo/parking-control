@@ -1,8 +1,8 @@
-package com.api.parkingcontrol.controller;
+package com.api.parkingcontrol.controllers;
 
-import com.api.parkingcontrol.dto.ParkingSpotDto;
-import com.api.parkingcontrol.model.ParkingSpot;
-import com.api.parkingcontrol.service.ParkingSpotService;
+import com.api.parkingcontrol.dtos.ParkingSpotDto;
+import com.api.parkingcontrol.models.ParkingSpot;
+import com.api.parkingcontrol.services.ParkingSpotService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

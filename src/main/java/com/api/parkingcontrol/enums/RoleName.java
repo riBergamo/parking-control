@@ -1,2 +1,6 @@
-package com.api.parkingcontrol.enums;public class RoleName {
+package com.api.parkingcontrol.enums;
+
+public enum RoleName {
+    ROLE_ADMIN,
+    ROLE_USER;
 }

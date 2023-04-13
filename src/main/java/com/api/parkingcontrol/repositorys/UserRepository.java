@@ -1,6 +1,6 @@
-package com.api.parkingcontrol.repository;
+package com.api.parkingcontrol.repositorys;
 
-import com.api.parkingcontrol.model.Users;
+import com.api.parkingcontrol.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, UUID> {
+public interface UserRepository extends JpaRepository<UserModel, UUID> {
 
-    Optional<Users> findByUsername(String username);
+    Optional<UserModel> findByUsername(String username);
 }

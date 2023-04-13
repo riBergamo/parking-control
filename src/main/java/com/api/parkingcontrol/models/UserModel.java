@@ -1,4 +1,4 @@
-package com.api.parkingcontrol.model;
+package com.api.parkingcontrol.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,24 +11,18 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "user_table")
-public class Users implements UserDetails, Serializable {
-
+public class UserModel implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;
-
     @Column(nullable = false, unique = true)
     private String username;
-
     @Column(nullable = false)
     private String password;
-
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
