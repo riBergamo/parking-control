@@ -75,7 +75,15 @@ public class ParkingSpotController {
         }
 
         var parkingSpot = new ParkingSpot();//nova instancia
-
+        if(parkingSpotService.existsByLicensePlateCar(parkingSpotDto.getLicensePlateCar())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: License Plate Car is already in use!");
+        }
+        if(parkingSpotService.existsByParkingSpotNumber(parkingSpotDto.getParkingSpotNumber())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot is already in use!");
+        }
+        if(parkingSpotService.existsByApartmentAndBlock(parkingSpotDto.getApartment(), parkingSpotDto.getBlock())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot already registered for this apartment/block!");
+        }
         BeanUtils.copyProperties(parkingSpotDto, parkingSpot);//conversão
         parkingSpot.setId(parkingSpotOptional.get().getId());//seta o id e a data de registro para permanecer o mesmo
         parkingSpot.setRegistrationDate(parkingSpotOptional.get().getRegistrationDate());

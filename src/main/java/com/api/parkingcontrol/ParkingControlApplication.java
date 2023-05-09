@@ -12,7 +12,8 @@ public class ParkingControlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ParkingControlApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("senha123"));//senha para salvar no bd, mas o correto é criar endpoints para salvar esses users, controle de acesso,
+		System.out.println(new BCryptPasswordEncoder().encode("senha123"));
+		//senha para salvar no bd, mas o correto é criar endpoints para salvar esses users, controle de acesso,
 	}
 
 }

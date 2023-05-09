@@ -2,13 +2,14 @@ package com.api.parkingcontrol.configs.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration//@enablewebsecurity: desliga as configs do spring security
+//@Configuration//@enablewebsecurity: desliga as configs do spring security
 public class WebSecurityOld extends WebSecurityConfigurerAdapter {
 
     final UserDetailsServiceImpl userDetailsService;
@@ -23,6 +24,9 @@ public class WebSecurityOld extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeHttpRequests()
+                .antMatchers(HttpMethod.GET, "/parking-spot/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/parking-spot").hasAnyRole("USER")//hasRole
+                .antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -33,7 +37,7 @@ public class WebSecurityOld extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());//em vez de fazer auth em memoria esta utilizando o userdetailsservice para isso
+                .passwordEncoder(passwordEncoder());//em vez de fazer auth em memoria esta utilizando o userdetailsservice para isso(no bd)
     }
 
     @Bean
