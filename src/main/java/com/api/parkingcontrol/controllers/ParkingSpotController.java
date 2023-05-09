@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)//ele
 @RequestMapping("/parking-spot")
 public class ParkingSpotController {
 
@@ -74,7 +74,7 @@ public class ParkingSpotController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
         }
 
-        var parkingSpot = new ParkingSpot();//nova instancia
+        var parkingSpot = new ParkingSpot();                                                                            //new instance
         if(parkingSpotService.existsByLicensePlateCar(parkingSpotDto.getLicensePlateCar())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: License Plate Car is already in use!");
         }
@@ -84,8 +84,9 @@ public class ParkingSpotController {
         if(parkingSpotService.existsByApartmentAndBlock(parkingSpotDto.getApartment(), parkingSpotDto.getBlock())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot already registered for this apartment/block!");
         }
-        BeanUtils.copyProperties(parkingSpotDto, parkingSpot);//conversão
-        parkingSpot.setId(parkingSpotOptional.get().getId());//seta o id e a data de registro para permanecer o mesmo
+
+        BeanUtils.copyProperties(parkingSpotDto, parkingSpot);                                                          //conversion
+        parkingSpot.setId(parkingSpotOptional.get().getId());                                                           //sets the registration id and date to remain the same
         parkingSpot.setRegistrationDate(parkingSpotOptional.get().getRegistrationDate());
 
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.save(parkingSpot));

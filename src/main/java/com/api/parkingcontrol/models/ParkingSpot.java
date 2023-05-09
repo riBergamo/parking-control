@@ -8,7 +8,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "parking_spot")
 public class ParkingSpot implements Serializable {
-    //private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

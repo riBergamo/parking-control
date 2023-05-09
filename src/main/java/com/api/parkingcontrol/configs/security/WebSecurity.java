@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+//New way to configure Spring Security after 5.4
+
 @Configuration
 public class WebSecurity {
 
@@ -18,9 +20,9 @@ public class WebSecurity {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.GET, "/parking-spot/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/parking-spot").hasAnyRole("USER", "ADMIN")             //hasAnyRole: verifica se tem mais de uma role
+                .antMatchers(HttpMethod.POST, "/parking-spot").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT, "/parking-spot/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")                         // hasRole: verifica uma unica
+                .antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

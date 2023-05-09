@@ -10,13 +10,12 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
-//para melhorar: criar interface para o service para esta classe implementar ela pq se caso precisar trocar a implementação nao vai precisar fazer refatoração grande no controller
 @Service
 public class ParkingSpotService {
 
-    final ParkingSpotRepository parkingSpotRepository; //controller aciona service, service aciona repository
+    final ParkingSpotRepository parkingSpotRepository;
 
-    public ParkingSpotService(ParkingSpotRepository parkingSpotRepository) {//criar injeção de dependencias: @autowared ou (melhor) criar construtor
+    public ParkingSpotService(ParkingSpotRepository parkingSpotRepository) {
         this.parkingSpotRepository = parkingSpotRepository;
     }
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-@Transactional//da acesso as roles, se nao da 401
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     final UserRepository userRepository;
